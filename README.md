@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# # IDE Observer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Описание проекта
 
-## Available Scripts
+**Обсервер** – это приложение для наблюдения за несколькими учениками, которые пишут код в реальном времени. Приложение позволяет приглашать учеников в комнаты, просматривать код и обмениваться сообщениями с пользователями.
 
-In the project directory, you can run:
+Преподавателям Обсервер позволяет наблюдать за экранами 1-30 учеников, давать им комментарии и следить за усвоением материалов. Ученикам обсервер позволяет получать обратную связь по написанному коду и помощь максимально быстро.
 
-### `npm start`
+Обсервер состоит из
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+– Плагина для IDE (вероятно джава)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+– Сокет сервера (вероятно питон)
 
-### `npm test`
+– Клиента для наблюдения за учениками (вероятно js)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Интерфейс ученика
+
+Плагина для IDE добавляет панель для подключения к комнате.
+
+Вводя номер комнаты и имя пользователь подключается к сокет-серверу
+
+После входа в комнату ученик начинает отправлять изменения своего проекта на сокет сервер. Также у него открывается диалог с преподавателем, где он может отправлять сообщения.
+
+### Интерфейс наблюдателя
+
+У преподавателя после создания комнаты видны все ученики, которые в комнате присутствуют. Если пользователи отправляли сообщения и они не были просмотрены, индикатор об этом находится справа от имени ученика на панелти.
+
+Преподаватель может переключиться на вкладку одного ученика, после этого в центральное окно начнет подгружаться его дерево файлов и код, а в парящий блок с сообщениями будет загружена история переписки.
+
+Преподаватель может отправлять сообщения пользователю и просматривать все его файлы. Также преподаватель может закрыть комнату, тогда соединение для всех учеников будет потеряно.
+
+# Инструкция по сборке
+
+## Установка зависимостей
+
+### `npm install`
+
+## Сборка проекта
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Открыть в браузере
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### `npm run start`
