@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         background: #000;
-        font-family: StratosSkyeng;
+        font-family: "StratosSkyeng", sans-serif;
         overflow: auto;
 
         &::-webkit-scrollbar {

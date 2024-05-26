@@ -1,14 +1,18 @@
-import { FC, HTMLProps } from 'react';
+import { FC } from 'react';
 
 import * as Styled from './ui.styled';
 
 
-interface IButtonProps extends HTMLProps<HTMLButtonElement> {
-  onClick: React.MouseEventHandler;
+interface IButtonProp {
+  disabled: boolean;
 }
 
-export const Button: FC<IButtonProps> = ({ onClick }) => (
-  <Styled.Button type="button" onClick={ onClick }>
+export const Button: FC<IButtonProp> = ({ disabled }) => (
+  <Styled.Button
+    disabled={ disabled }
+    type="button"
+    onClick={ () => console.log('Click') }
+  >
     Создать комнату
   </Styled.Button>
 );

@@ -1,19 +1,32 @@
-import { useEffect } from 'react';
-import { io } from 'socket.io-client';
+import { useState, useEffect } from 'react';
+import { io, Socket } from 'socket.io-client';
+
+import { getStateRoom } from '@redux/';
+
+import { useAppSelector } from './use-app-dispatch-selector';
 
 
-export const useSocket = (url: string) => {
-  const socket = io(url, {
-    transports: ['websocket'],
-  });
+export const useSocket = () => {
+  const { server } = useAppSelector(getStateRoom);
+
+  const [socket, setSocket] = useState<Socket | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    socket.connect();
+    const newSocket = io(server, {
+      transports: ['websocket'],
+    });
 
-    return () => {
-      socket.disconnect();
-    };
-  }, [url]);
+    setError(null);
 
-  return socket;
+    newSocket.on('connect_error', (newError) => {
+      newSocket.close();
+
+      setError(newError);
+    });
+
+    setSocket(newSocket);
+  }, [server]);
+
+  return { socket, error };
 };

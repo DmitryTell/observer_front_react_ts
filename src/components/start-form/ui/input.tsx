@@ -1,18 +1,24 @@
-import { FC, HTMLProps } from 'react';
+import { useAppDispatch, useAppSelector } from '@hook/';
+import { getStateRoom, setServerUrl } from '@redux/';
 
 import * as Styled from './ui.styled';
 
 
-interface IInputProps extends HTMLProps<HTMLInputElement> {
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-}
+export const Input = () => {
+  const dispatch = useAppDispatch();
 
-export const Input: FC<IInputProps> = ({ value, onChange }) => (
-  <Styled.Input
-    placeholder="ws://server.com"
-    type="text"
-    value={ value }
-    onChange={ onChange }
-  />
-);
+  const { server } = useAppSelector(getStateRoom);
+
+  const handleChangeServerUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setServerUrl({ url: event.target.value }));
+  };
+
+  return (
+    <Styled.Input
+      placeholder="ws://server.com"
+      type="text"
+      value={ server }
+      onChange={ handleChangeServerUrl }
+    />
+  );
+};
