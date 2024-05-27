@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import { useRoom } from '@hook/';
-
 import * as Styled from './ui.styled';
 
 
@@ -10,15 +8,16 @@ interface IButtonProp {
 }
 
 export const Button: FC<IButtonProp> = ({ disabled }) => {
-  const { handleCreateRoom } = useRoom();
+  const handleOpenTasks = () => {
+    console.log('Click to task opener');
+  };
 
   return (
     <Styled.Button
       disabled={ disabled }
       type="button"
-      onClick={ handleCreateRoom }
-    >
-      Создать комнату
+      onClick={ handleOpenTasks }
+    >Задания
     </Styled.Button>
   );
 };
